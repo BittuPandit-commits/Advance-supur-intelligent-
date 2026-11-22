@@ -3,32 +3,36 @@ package com.bittu.ai
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var chatOutput: TextView
-    private lateinit var taskInput: EditText
-    private lateinit var scroll: ScrollView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        chatOutput = findViewById(R.id.chatOutput)
-        taskInput = findViewById(R.id.taskInput)
-        scroll = findViewById(R.id.scroll)
+        val input = findViewById<EditText>(R.id.chatInput)
+        val output = findViewById<TextView>(R.id.chatOutput)
+        val send = findViewById<Button>(R.id.sendButton)
 
-        findViewById<Button>(R.id.sendButton).setOnClickListener {
-            val task = taskInput.text.toString().trim()
+        send.setOnClickListener {
+            val message = input.text.toString().trim()
+            if (message.isEmpty()) return@setOnClickListener
 
-            if (task.isNotEmpty()) {
-                chatOutput.append("\n\nआप: $task")
-                chatOutput.append("\n\nBittu AI: मैं आपके कार्य के लिए कोड बनाने की तैयारी कर रहा हूँ।")
-                scroll.post { scroll.fullScroll(ScrollView.FOCUS_DOWN) }
-                taskInput.text.clear()
+            output.append("\n\nYou: $message")
+            input.text.clear()
+            output.append("\n\nAdvance Super Intelligent: सोच रहा हूँ...")
+
+            CoroutineScope(Dispatchers.Main).launch {
+                val reply = GroqApi.chat(this@MainActivity, message)
+                output.text = output.text.toString().replace(
+                    "Advance Super Intelligent: सोच रहा हूँ...",
+                    "Advance Super Intelligent: $reply"
+                )
             }
         }
     }

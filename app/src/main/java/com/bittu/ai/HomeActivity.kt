@@ -35,6 +35,10 @@ class HomeActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
         }
 
+        findViewById<Button>(R.id.openSettingsButton).setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+        }
+
         findViewById<Button>(R.id.checkUpdateButton).setOnClickListener {
             startActivity(Intent(this, UpdateActivity::class.java))
         }

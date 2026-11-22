@@ -30,6 +30,15 @@
         android:textColor="#FFFFFF" />
 
     <Button
+        android:id="@+id/openSettingsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/bittu_surface"
+        android:text="Groq API Settings"
+        android:textColor="@color/bittu_text" />
+
+    <Button
         android:id="@+id/checkUpdateButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bittu_background"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Groq API Settings"
+        android:textColor="@color/bittu_green"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="अपनी Groq API key यहाँ paste करें। यह key सिर्फ आपके फोन में save होगी।"
+        android:textColor="@color/bittu_text" />
+
+    <EditText
+        android:id="@+id/groqKeyInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="gsk_..."
+        android:inputType="textPassword"
+        android:textColor="@color/bittu_text"
+        android:textColorHint="#666666" />
+
+    <Button
+        android:id="@+id/saveKeyButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/bittu_green"
+        android:text="Save Key"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/keyStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="अभी कोई key saved नहीं है।"
+        android:textColor="@color/bittu_text" />
+
+</LinearLayout>
