@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@color/bittu_surface"
     android:orientation="vertical"
-    android:padding="14dp">
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/featureTitle"
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:textColor="@color/bittu_green"
+        android:textColor="@color/bittu_text_secondary"
         android:textSize="12sp" />
 
 </LinearLayout>

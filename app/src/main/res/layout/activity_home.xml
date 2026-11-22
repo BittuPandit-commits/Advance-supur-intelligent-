@@ -4,62 +4,28 @@
     android:layout_height="match_parent"
     android:background="@color/bittu_background"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="20dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Advance Super Intelligent"
-        android:textColor="@color/bittu_green"
-        android:textSize="26sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Created by Bittu Pandit"
-        android:textColor="@color/bittu_text" />
-
-    <Button
-        android:id="@+id/openChatButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/bittu_green"
-        android:text="AI Chat खोलें"
-        android:textColor="#FFFFFF" />
-
-    <Button
-        android:id="@+id/openSettingsButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@color/bittu_surface"
-        android:text="Groq API Settings"
-        android:textColor="@color/bittu_text" />
-
-    <Button
-        android:id="@+id/checkUpdateButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@color/bittu_surface"
-        android:text="Check Update"
-        android:textColor="@color/bittu_text" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="सभी Facilities"
         android:textColor="@color/bittu_text"
-        android:textSize="18sp"
+        android:textSize="28sp"
         android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Created by Bittu Pandit"
+        android:textColor="@color/bittu_text_secondary"
+        android:textSize="14sp" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:layout_weight="1">
 
         <GridLayout
@@ -69,5 +35,32 @@
             android:columnCount="2"
             android:useDefaultMargins="true" />
     </ScrollView>
+
+    <Button
+        android:id="@+id/openChatButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/bittu_accent"
+        android:text="AI Chat खोलें"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/openSettingsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/bittu_surface_alt"
+        android:text="Groq API Settings"
+        android:textColor="@color/bittu_text" />
+
+    <Button
+        android:id="@+id/checkUpdateButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/bittu_surface_alt"
+        android:text="App Update Check"
+        android:textColor="@color/bittu_text" />
 
 </LinearLayout>

@@ -10,7 +10,7 @@
         android:id="@+id/featureTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/bittu_green"
+        android:textColor="@color/bittu_accent"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:textColor="@color/bittu_text" />
+        android:textColor="@color/bittu_text_secondary" />
 
     <TextView
         android:id="@+id/featureDescription"
@@ -39,6 +39,8 @@
             android:id="@+id/featureOutput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/bittu_ai_bubble"
+            android:padding="16dp"
             android:text="अपना कार्य लिखें और Run दबाएं।"
             android:textColor="@color/bittu_text" />
     </ScrollView>
@@ -52,16 +54,16 @@
         android:hint="अपना कार्य लिखें"
         android:inputType="textMultiLine"
         android:minLines="2"
-        android:padding="12dp"
+        android:padding="14dp"
         android:textColor="@color/bittu_text"
-        android:textColorHint="#9CA3AF" />
+        android:textColorHint="@color/bittu_text_secondary" />
 
     <Button
         android:id="@+id/runButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="@color/bittu_green"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/bittu_accent"
         android:text="Run"
         android:textColor="#FFFFFF" />
 

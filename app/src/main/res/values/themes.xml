@@ -1,6 +1,10 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Theme.BittuAI" parent="Theme.Material3.Dark.NoActionBar">
-        <item name="colorPrimary">@color/bittu_green</item>
+        <item name="android:windowBackground">@color/bittu_background</item>
+        <item name="colorPrimary">@color/bittu_accent</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSurface">@color/bittu_surface</item>
+        <item name="colorOnSurface">@color/bittu_text</item>
         <item name="android:statusBarColor">@color/bittu_background</item>
         <item name="android:navigationBarColor">@color/bittu_background</item>
     </style>
