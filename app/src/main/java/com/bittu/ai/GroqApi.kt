@@ -11,6 +11,7 @@ import java.net.URL
 object GroqApi {
 
     private const val endpoint = "https://api.groq.com/openai/v1/chat/completions"
+    private const val model = "llama-3.3-70b-versatile"
 
     fun saveKey(context: Context, key: String) {
         context.getSharedPreferences("bittu_ai", Context.MODE_PRIVATE)
@@ -31,7 +32,7 @@ object GroqApi {
                     put("role", "system")
                     put(
                         "content",
-                        "You are Advance Super Intelligent, a helpful AI assistant created by Bittu Pandit. Reply in the user's language."
+                        "You are Advance Super Intelligent, a helpful AI assistant created by Bittu Pandit. Reply in the user's language. Use clean plain text. Do not use markdown symbols such as asterisks, hashes, hyphens, equal signs, plus signs, or backticks."
                     )
                 }
             )
@@ -56,7 +57,7 @@ object GroqApi {
             connection.readTimeout = 60000
 
             val body = JSONObject().apply {
-                put("model", "llama-3.3-70b-versatile")
+                put("model", model)
                 put("temperature", 0.7)
                 put("messages", messages)
             }
@@ -72,16 +73,37 @@ object GroqApi {
             connection.disconnect()
 
             if (responseCode !in 200..299) {
-                return@withContext "Groq error: $responseCode\n\n$responseText"
+                return@withContext when (responseCode) {
+                    401 -> "Groq ने आपकी API key स्वीकार नहीं की। कृपया Groq Console में नई key बनाएं और Settings में दोबारा save करें।\n\nTechnical details:\n$responseText"
+                    404 -> "Groq ने request का model या service नहीं पाया। कृपया कुछ देर बाद फिर कोशिश करें।\n\nTechnical details:\n$responseText"
+                    429 -> "Groq की limit पूरी हो गई है। कृपया कुछ देर बाद फिर कोशिश करें।\n\nTechnical details:\n$responseText"
+                    else -> "Groq से जवाब नहीं मिला। Error code: $responseCode\n\nTechnical details:\n$responseText"
+                }
             }
 
-            JSONObject(responseText)
+            val content = JSONObject(responseText)
                 .getJSONArray("choices")
                 .getJSONObject(0)
                 .getJSONObject("message")
                 .getString("content")
+
+            cleanPlainText(content)
         } catch (e: Exception) {
             "AI response नहीं मिल सका।\n\n${e.message}"
         }
+    }
+
+    private fun cleanPlainText(text: String): String {
+        return text
+            .replace("```", "")
+            .replace("**", "")
+            .replace("##", "")
+            .replace("###", "")
+            .replace("*", "")
+            .replace("=", "")
+            .replace("+", "")
+            .replace("- ", "")
+            .replace("\n\n\n+", "\n\n")
+            .trim()
     }
 }

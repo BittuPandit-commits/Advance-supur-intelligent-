@@ -45,6 +45,7 @@ object AiBrain {
         val base = StringBuilder()
         base.append("You are Advance Super Intelligent, an advanced AI system created by Bittu Pandit. ")
         base.append("Reply in the user's language. Be accurate, practical, and structured.\n\n")
+        base.append("Use clean plain text only. Do not use markdown symbols such as asterisks, hashes, hyphens, equal signs, plus signs, or backticks.\n\n")
         base.append("Active module: $moduleName.\n")
 
         if (agentMode) {
