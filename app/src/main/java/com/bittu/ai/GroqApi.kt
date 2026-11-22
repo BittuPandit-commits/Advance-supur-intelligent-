@@ -25,6 +25,22 @@ object GroqApi {
     }
 
     suspend fun chat(context: Context, userMessage: String): String = withContext(Dispatchers.IO) {
+        val messages = JSONArray().apply {
+            put(
+                JSONObject().apply {
+                    put("role", "system")
+                    put(
+                        "content",
+                        "You are Advance Super Intelligent, a helpful AI assistant created by Bittu Pandit. Reply in the user's language."
+                    )
+                }
+            )
+            put(JSONObject().apply { put("role", "user").put("content", userMessage) })
+        }
+        chatMessages(context, messages)
+    }
+
+    suspend fun chatMessages(context: Context, messages: JSONArray): String = withContext(Dispatchers.IO) {
         val key = getKey(context)
         if (key.isBlank()) {
             return@withContext "पहले Settings में Groq API key डालें।"
@@ -42,33 +58,25 @@ object GroqApi {
             val body = JSONObject().apply {
                 put("model", "llama-3.3-70b-versatile")
                 put("temperature", 0.7)
-                put("messages", JSONArray().apply {
-                    put(JSONObject().apply {
-                        put("role", "system")
-                        put("content", "You are Advance Super Intelligent, a helpful AI assistant created by Bittu Pandit. Reply in the user's language.")
-                    })
-                    put(JSONObject().apply {
-                        put("role", "user")
-                        put("content", userMessage)
-                    })
-                })
+                put("messages", messages)
             }
 
             connection.outputStream.use { it.write(body.toString().toByteArray()) }
 
-            val responseText = if (connection.responseCode in 200..299) {
+            val responseCode = connection.responseCode
+            val responseText = if (responseCode in 200..299) {
                 connection.inputStream.bufferedReader().use { it.readText() }
             } else {
                 connection.errorStream?.bufferedReader()?.use { it.readText() } ?: ""
             }
             connection.disconnect()
 
-            if (connection.responseCode !in 200..299) {
-                return@withContext "Groq error: ${connection.responseCode}\n\n$responseText"
+            if (responseCode !in 200..299) {
+                return@withContext "Groq error: $responseCode\n\n$responseText"
             }
 
-            val response = JSONObject(responseText)
-            response.getJSONArray("choices")
+            JSONObject(responseText)
+                .getJSONArray("choices")
                 .getJSONObject(0)
                 .getJSONObject("message")
                 .getString("content")

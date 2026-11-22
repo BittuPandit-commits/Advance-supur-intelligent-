@@ -13,26 +13,28 @@ object AiBrain {
         userMessage: String,
         moduleName: String = "General",
         agentMode: Boolean = false
-    ): String = withContext(Dispatchers.IO) {
-        val history = MemoryStore.history(context)
-        val projectContext = MemoryStore.context(context)
+    ): String {
+        return withContext(Dispatchers.IO) {
+            val history = MemoryStore.history(context)
+            val projectContext = MemoryStore.context(context)
 
-        val system = buildSystemPrompt(moduleName, agentMode, projectContext)
-        val messages = JSONArray().put(
-            JSONObject().put("role", "system").put("content", system)
-        )
-
-        for (i in 0 until history.length()) {
-            val item = history.getJSONObject(i)
-            messages.put(
-                JSONObject()
-                    .put("role", item.optString("role", "user"))
-                    .put("content", item.optString("content", ""))
+            val system = buildSystemPrompt(moduleName, agentMode, projectContext)
+            val messages = JSONArray().put(
+                JSONObject().put("role", "system").put("content", system)
             )
-        }
 
-        messages.put(JSONObject().put("role", "user").put("content", userMessage))
-        GroqApi.chatMessages(context, messages)
+            for (i in 0 until history.length()) {
+                val item = history.getJSONObject(i)
+                messages.put(
+                    JSONObject()
+                        .put("role", item.optString("role", "user"))
+                        .put("content", item.optString("content", ""))
+                )
+            }
+
+            messages.put(JSONObject().put("role", "user").put("content", userMessage))
+            GroqApi.chatMessages(context, messages)
+        }
     }
 
     private fun buildSystemPrompt(
