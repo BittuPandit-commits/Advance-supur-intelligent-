@@ -6,6 +6,9 @@ import android.widget.EditText
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class FeatureActivity : AppCompatActivity() {
 
@@ -13,7 +16,7 @@ class FeatureActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feature)
 
-        val title = intent.getStringExtra("title") ?: "Bittu AI"
+        val title = intent.getStringExtra("title") ?: "Advance Super Intelligent"
         val description = intent.getStringExtra("description") ?: ""
         val category = intent.getStringExtra("category") ?: ""
 
@@ -30,9 +33,18 @@ class FeatureActivity : AppCompatActivity() {
 
             if (task.isNotEmpty()) {
                 output.append("\n\nआपका कार्य: $task")
-                output.append("\n\nBittu AI: यह module आपके कार्य को समझेगा और Groq AI integration के बाद real output देगा।")
+                output.append("\n\nAdvance Super Intelligent: सोच रहा हूँ...")
                 scroll.post { scroll.fullScroll(ScrollView.FOCUS_DOWN) }
                 input.text.clear()
+
+                CoroutineScope(Dispatchers.Main).launch {
+                    val reply = GroqApi.chat(this@FeatureActivity, task)
+                    output.text = output.text.toString().replace(
+                        "Advance Super Intelligent: सोच रहा हूँ...",
+                        "Advance Super Intelligent: $reply"
+                    )
+                    scroll.post { scroll.fullScroll(ScrollView.FOCUS_DOWN) }
+                }
             }
         }
     }

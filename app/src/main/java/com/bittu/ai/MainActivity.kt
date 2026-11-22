@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val input = findViewById<EditText>(R.id.chatInput)
+        val input = findViewById<EditText>(R.id.taskInput)
         val output = findViewById<TextView>(R.id.chatOutput)
         val send = findViewById<Button>(R.id.sendButton)
 
