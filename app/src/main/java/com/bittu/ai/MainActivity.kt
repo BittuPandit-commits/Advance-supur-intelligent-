@@ -28,7 +28,8 @@ class MainActivity : AppCompatActivity() {
             output.append("\n\nAdvance Super Intelligent: सोच रहा हूँ...")
 
             CoroutineScope(Dispatchers.Main).launch {
-                val reply = GroqApi.chat(this@MainActivity, message)
+                val reply = AiBrain.think(this@MainActivity, message, "AI Chat")
+                MemoryStore.addMessage(this@MainActivity, "assistant", reply)
                 output.text = output.text.toString().replace(
                     "Advance Super Intelligent: सोच रहा हूँ...",
                     "Advance Super Intelligent: $reply"

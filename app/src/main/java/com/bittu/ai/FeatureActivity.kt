@@ -33,16 +33,26 @@ class FeatureActivity : AppCompatActivity() {
 
             if (task.isNotEmpty()) {
                 output.append("\n\nआपका कार्य: $task")
-                output.append("\n\nAdvance Super Intelligent: सोच रहा हूँ...")
+                output.append("\n\nAdvance Super Intelligent Agent: कार्य योजना बना रहा हूँ...")
                 scroll.post { scroll.fullScroll(ScrollView.FOCUS_DOWN) }
                 input.text.clear()
 
                 CoroutineScope(Dispatchers.Main).launch {
-                    val reply = GroqApi.chat(this@FeatureActivity, task)
-                    output.text = output.text.toString().replace(
-                        "Advance Super Intelligent: सोच रहा हूँ...",
-                        "Advance Super Intelligent: $reply"
+                    val agentResult = AgentEngine.runTask(
+                        this@FeatureActivity,
+                        title,
+                        task
                     )
+
+                    val finalText = """
+                        \n\nIntent: ${agentResult.intent}
+                        \n\nExecution Plan:
+                        ${agentResult.plan}
+                        \n\nFinal Result:
+                        ${agentResult.result}
+                    """.trim()
+
+                    output.append(finalText)
                     scroll.post { scroll.fullScroll(ScrollView.FOCUS_DOWN) }
                 }
             }
