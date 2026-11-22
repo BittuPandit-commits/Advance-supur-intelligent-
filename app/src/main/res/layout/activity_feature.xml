@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bittu_background"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/featureTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/bittu_green"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/featureCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/bittu_text" />
+
+    <TextView
+        android:id="@+id/featureDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/bittu_text" />
+
+    <ScrollView
+        android:id="@+id/featureScroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/featureOutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="अपना कार्य लिखें और Run दबाएं।"
+            android:textColor="@color/bittu_text" />
+    </ScrollView>
+
+    <EditText
+        android:id="@+id/featureInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@color/bittu_surface"
+        android:hint="अपना कार्य लिखें"
+        android:inputType="textMultiLine"
+        android:minLines="2"
+        android:padding="12dp"
+        android:textColor="@color/bittu_text"
+        android:textColorHint="#9CA3AF" />
+
+    <Button
+        android:id="@+id/runButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/bittu_green"
+        android:text="Run"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>
