@@ -11,7 +11,7 @@ import java.net.URL
 object GroqApi {
 
     private const val endpoint = "https://api.groq.com/openai/v1/chat/completions"
-    private const val model = "llama-3.3-70b-versatile"
+    private const val model = "openai/gpt-oss-120b"
 
     fun saveKey(context: Context, key: String) {
         context.getSharedPreferences("bittu_ai", Context.MODE_PRIVATE)
