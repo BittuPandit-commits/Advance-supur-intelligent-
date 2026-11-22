@@ -5,6 +5,7 @@
 - Repository structure and core Kotlin files exist.
 - Commit history exists and includes the previously mentioned commits.
 - Groq API integration, Settings key save/load, Home screen wiring, and a common AI pipeline are present in code.
+- AI Chat is user-verified complete: the user confirmed runtime verification after the Groq model fix.
 
 ## Previously overstated
 
@@ -15,9 +16,7 @@
 
 ## Still pending
 
-- Workflow run logs and APK artifact verification.
-- Runtime testing of every module.
-- Root-cause confirmation for 401 and 404 errors.
+- Runtime testing of the remaining 33 modules.
 - Verification of update checker behavior.
 - Specialized real functionality for modules that currently rely only on generic AI prompts.
 
