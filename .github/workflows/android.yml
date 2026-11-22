@@ -27,8 +27,15 @@ jobs:
       - name: Build debug APK
         run: gradle assembleDebug --no-daemon
 
+      - name: Show APK files
+        run: |
+          echo "Looking for APK files..."
+          find app/build/outputs -type f -name '*.apk' -print
+
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: advance-super-intelligent-apk
           path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+          retention-days: 30
