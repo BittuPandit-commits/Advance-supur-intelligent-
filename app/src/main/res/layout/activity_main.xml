@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bittu_background"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bittu AI"
+        android:textColor="@color/bittu_green"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Created by Bittu Pandit"
+        android:textColor="@color/bittu_text" />
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/chatOutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="नमस्ते! अपना कार्य लिखें।\n\nजैसे: Login page बनाओ\nCalculator app बनाओ\nTodo list app बनाओ"
+            android:textColor="@color/bittu_text"
+            android:textSize="16sp" />
+    </ScrollView>
+
+    <EditText
+        android:id="@+id/taskInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@color/bittu_surface"
+        android:hint="अपना कार्य लिखें"
+        android:inputType="textMultiLine"
+        android:minLines="2"
+        android:padding="12dp"
+        android:textColor="@color/bittu_text"
+        android:textColorHint="#9CA3AF" />
+
+    <Button
+        android:id="@+id/sendButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/bittu_green"
+        android:text="भेजें"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>
