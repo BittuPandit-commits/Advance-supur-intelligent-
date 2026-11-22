@@ -29,6 +29,15 @@
         android:text="AI Chat खोलें"
         android:textColor="#FFFFFF" />
 
+    <Button
+        android:id="@+id/checkUpdateButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/bittu_surface"
+        android:text="Check Update"
+        android:textColor="@color/bittu_text" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

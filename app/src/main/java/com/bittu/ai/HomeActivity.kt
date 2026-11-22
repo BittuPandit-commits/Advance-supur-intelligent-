@@ -34,5 +34,9 @@ class HomeActivity : AppCompatActivity() {
         findViewById<Button>(R.id.openChatButton).setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }
+
+        findViewById<Button>(R.id.checkUpdateButton).setOnClickListener {
+            startActivity(Intent(this, UpdateActivity::class.java))
+        }
     }
 }
